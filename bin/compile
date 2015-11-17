@@ -33,7 +33,7 @@ TEST_ARCHIVE=${TEST_ARCHIVE_NAME}.zip
 TEST_PHANTOMJS=https://github.com/Vitallium/phantomjs/releases/download/${TEST_VERSION}/${TEST_ARCHIVE}
 curl -L $TEST_PHANTOMJS -s -o $CACHE_DIR/$TEST_ARCHIVE
 unzip $CACHE_DIR/$TEST_ARCHIVE
-mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/phantomjs
+mv $CACHE_DIR/$TEST_ARCHIVE_NAME $BUILD_DIR/vendor/phantomjs
 
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
