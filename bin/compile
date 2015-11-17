@@ -16,8 +16,9 @@ BUILDPACK_PHANTOMJS_PACKAGE=https://bitbucket.org/ariya/phantomjs/downloads/${FI
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching PhantomJS ${VERSION} binaries at ${BUILDPACK_PHANTOMJS_PACKAGE}"
+  echo "-----> Saving to ${CACHE_DIR} / ${FILE_NAME}"
   curl $BUILDPACK_PHANTOMJS_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME
-  curl -L https://github.com/Vitallium/phantomjs/releases/download/2.0.1/phantomjs-2.0.1-linux-x86_64.zip -s -o /app/phantom.zip
+  curl -L https://github.com/Vitallium/phantomjs/releases/download/2.0.1/phantomjs-2.0.1-linux-x86_64.zip -s -o $CACHE_DIR/$FILE_NAME
 fi
 
 echo "-----> Extracting PhantomJS ${VERSION} binaries to ${BUILD_DIR}/vendor/phantomjs"
