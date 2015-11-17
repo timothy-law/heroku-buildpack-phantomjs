@@ -18,13 +18,21 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching PhantomJS ${VERSION} binaries at ${BUILDPACK_PHANTOMJS_PACKAGE}"
   echo "-----> Saving to ${CACHE_DIR} / ${FILE_NAME}"
   curl $BUILDPACK_PHANTOMJS_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME
-  curl -L https://github.com/Vitallium/phantomjs/releases/download/2.0.1/phantomjs-2.0.1-linux-x86_64.zip -s -o $CACHE_DIR/$FILE_NAME
 fi
 
 echo "-----> Extracting PhantomJS ${VERSION} binaries to ${BUILD_DIR}/vendor/phantomjs"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
 mkdir -p $BUILD_DIR/vendor
-tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+#tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+#mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/phantomjs
+
+echo "-----> Downloading test PhantomJS version"
+TEST_VERSION="2.0.1"
+TEST_ARCHIVE_NAME=phantomjs-${TEST_VERSION}-linux-x86_64
+TEST_ARCHIVE=${ARCHIVE_NAME}.zip
+TEST_PHANTOMJS=https://github.com/Vitallium/phantomjs/releases/download/${TEST_VERSION}/${TEST_ARCHIVE}
+curl -L $TEST_PHANTOMJS -s -o $CACHE_DIR/$TEST_ARCHIVE
+unzip $CACHE_DIR/$TEST_ARCHIVE
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/phantomjs
 
 echo "-----> exporting PATH and LIBRARY_PATH"
