@@ -29,7 +29,7 @@ mkdir -p $BUILD_DIR/vendor
 echo "-----> Downloading test PhantomJS version"
 TEST_VERSION="2.0.1"
 TEST_ARCHIVE_NAME=phantomjs-${TEST_VERSION}-linux-x86_64
-TEST_ARCHIVE=${ARCHIVE_NAME}.zip
+TEST_ARCHIVE=${TEST_ARCHIVE_NAME}.zip
 TEST_PHANTOMJS=https://github.com/Vitallium/phantomjs/releases/download/${TEST_VERSION}/${TEST_ARCHIVE}
 curl -L $TEST_PHANTOMJS -s -o $CACHE_DIR/$TEST_ARCHIVE
 unzip $CACHE_DIR/$TEST_ARCHIVE
